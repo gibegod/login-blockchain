@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <style>
+        header{
+            text-align: center;
+            font:  bold 17px sans-serif
+        }
+        body{
+            background-color:#808e9b;
+        }
+        .bloque{
+            border: 1px solid black;
+            width: 900px;
+            margin: 15px auto;
+            background: white;
+        }
+        .barra{
+            border: 1px solid black;
+            background: white;           
+        }
+        .opciones{
+            font:  bold 15px sans-serif;
+            border: 1px solid black;
+        }
+        footer{
+            clear: both;
+            padding: 20px;
+            border: 1px solid black;
+        }
+        .registro, .login{
+            font:  bold 15px sans-serif;
+        }
+        .boton{
+            font:  bold 15px sans-serif;
+        }
+
+        
+    
+    </style>
+</head>
+<body>
+<div class="bloque">
+    <header>
+        <h1>Rico Login</h1>
+    </header>
+    <div class="barra">
+    <ul class="user-info">
+        <li><a class="opciones" href="{{ url_for('index') }}">Home</a></li>
+        {% if current_user.is_anonymous %}
+            <li> | </li>
+            <li><a class="opciones" href="{{ url_for('login') }}">Login</a></li>
+            <li> | </li>
+            <li><a class="opciones" href="{{ url_for('show_signup_form') }}">Registrarse</a></li>
+        {% else %}
+            <li>{{ current_user.name }}</li>
+            <li> | </li>
+            <li><a class="opciones" href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+    </ul>
+    </div>
+    {% block content %}{% endblock %}
+    <div>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur, molestiae sapiente quos cumque alias commodi repudiandae inventore harum minus libero! Delectus eaque quam cumque nulla esse saepe. Ducimus, laboriosam.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque praesentium nobis non dolorem, illum natus dolore at veritatis iure quidem recusandae quas mollitia quis cum fuga, saepe similique, eligendi reiciendis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus labore officiis, deleniti non expedita neque molestiae, itaque odio consequuntur eaque a sunt? Praesentium exercitationem eveniet magni illum, excepturi est nihil!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut eligendi, illo voluptatibus officiis commodi nostrum, tempore quaerat nam facere harum sequi reprehenderit quibusdam vero laudantium dolor atque voluptatum vel provident.</p>
+    </div>
+    <footer>
+        Todos los derechos reservados.
+        Copyright 2019-2019</footer>
+</div>
+
+
+</body>
+</html>
