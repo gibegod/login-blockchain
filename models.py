@@ -13,8 +13,8 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(256), unique=True, nullable=False)
-    password = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(60), unique=True, nullable=False)
+    password = db.Column(db.String(50), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
@@ -43,8 +43,8 @@ class User(db.Model, UserMixin):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('blog_user.id', ondelete='CASCADE'), nullable=False)
-    title = db.Column(db.String(256), nullable=False)
-    title_slug = db.Column(db.String(256), unique=True, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
+    title_slug = db.Column(db.String(80), unique=True, nullable=False)
     content = db.Column(db.Text)
 
     def __repr__(self):
