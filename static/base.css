@@ -31,26 +31,8 @@ p, figure {
     margin: 1em 0
 }
 
-a img {
-    border: none
-}
-
 sup, sub {
     line-height: 0
 }
 
-.user-info {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
 
-.user-info li {
-    display: inline-block;
-    margin: 0;
-    padding: 0 10px 0 0;
-}
-
-a{
-    font-size: 80px;
-}

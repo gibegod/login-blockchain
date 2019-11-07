@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--  <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">-->  
     <style>
         header{
             text-align: center;
-            font:  bold 17px sans-serif
+            padding: 10px;
+        }
+        h4{
+            font-size: 15px;
         }
         body{
-            background-color:#808e9b;
+            background-color:#aaa69d;
         }
         .bloque{
             border: 1px solid black;
-            width: 900px;
-            margin: 15px auto;
-            background: white;
+            width: 80%;
+            margin: 5px auto;
+            background: #f7f1e3;
         }
         .barra{
-            border: 1px solid black;
-            background: white;           
+            border: 1px solid black;           
         }
         .opciones{
             font:  bold 15px sans-serif;
             border: 1px solid black;
         }
         footer{
+            font-weight: bold;
             clear: both;
-            padding: 20px;
+            padding: 15px;
             border: 1px solid black;
+            text-align: center;
         }
         .registro, .login{
             font:  bold 15px sans-serif;
@@ -37,6 +43,33 @@
         .boton{
             font:  bold 15px sans-serif;
         }
+        .user-info {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .user-info li {
+            display: inline-block;
+            margin: 0;
+            padding: 0 10px 0 0;
+        }
+        .user-info li a {
+            color: #227093;
+        }
+        .columna{
+            width: 30%;
+            float: right;
+            margin: 10px;
+            border: 1px solid black;
+        }
+        .texto{
+            border: 1px solid black;
+            padding: 20px;
+            margin-bottom: 15px;
+            width: 55%;
+        }
+
 
         
     
@@ -45,11 +78,12 @@
 <body>
 <div class="bloque">
     <header>
-        <h1>Rico Login</h1>
+        <h1>Rico-Login</h1>
+        <h4>La magica historia del login mas bello jamas creado</h4>
     </header>
     <div class="barra">
     <ul class="user-info">
-        <li><a class="opciones" href="{{ url_for('index') }}">Home</a></li>
+        <li><a class="opciones" href="{{ url_for('login') }}">Home</a></li>
         {% if current_user.is_anonymous %}
             <li> | </li>
             <li><a class="opciones" href="{{ url_for('login') }}">Login</a></li>
@@ -60,18 +94,24 @@
             <li> | </li>
             <li><a class="opciones" href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
+            <li> | </li>
+            <li><a class="opciones" href="http://www.google.com.ar">Mi cuenta</a></li>
+            <li> | </li>
+            <li><a class="opciones" href="http://www.google.com.ar">Contacto</a></li>
     </ul>
     </div>
+    <aside class="columna">
     {% block content %}{% endblock %}
-    <div>
+    </aside>
+    <article class="texto">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur, molestiae sapiente quos cumque alias commodi repudiandae inventore harum minus libero! Delectus eaque quam cumque nulla esse saepe. Ducimus, laboriosam.</p>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque praesentium nobis non dolorem, illum natus dolore at veritatis iure quidem recusandae quas mollitia quis cum fuga, saepe similique, eligendi reiciendis.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus labore officiis, deleniti non expedita neque molestiae, itaque odio consequuntur eaque a sunt? Praesentium exercitationem eveniet magni illum, excepturi est nihil!</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut eligendi, illo voluptatibus officiis commodi nostrum, tempore quaerat nam facere harum sequi reprehenderit quibusdam vero laudantium dolor atque voluptatum vel provident.</p>
-    </div>
+    </article>
     <footer>
         Todos los derechos reservados.
-        Copyright 2019-2019</footer>
+        Copyright 1999-2019</footer>
 </div>
 
 
