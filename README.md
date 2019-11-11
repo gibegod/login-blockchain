@@ -11,4 +11,4 @@ Pasos:
 set "FLASK_APP=run.py"
 set "FLASK_ENV=development"
 6. Ejecutar 'flask run'.
-7. Dirigirse a localhost:5000 y la magia ocurrira.
+7. Dirigirse a localhost:5000/login y la magia ocurrira.

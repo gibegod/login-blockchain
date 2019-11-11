@@ -7,51 +7,67 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!--  <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">-->  
     <style>
+        *{
+            font-family: sans-serif;
+        }
         header{
             text-align: center;
             padding: 10px;
+        }
+        header h1{
+            font-weight: bold;
+            font-size: 50px;
+
+        }
+        header h4{
+            font-size: 17px;
+        }
+        .fijo {
             background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 25%,
             rgba(255,255,255,0.2) 75%, rgba(255,255,255,0) 100%);
             box-shadow: 0 0 25px rgba(0,0,0,0.1), inset 0 0 1px rgba(255,255,255,0.6);
         }
-        h4{
-            font-size: 15px;
-        }
         h3{
-            font: bold 30px arial;
+            font-size: 30px;
+            font-weight: bold;
             text-align: center;
         }
         body{
-            background-color:#2f3542;
             background-image: url('https://wallpaperplay.com/walls/full/5/9/5/37696.jpg');
+
         }
         .bloque{
-            border: 1px solid black;
+            border-right: 2px solid black;
+            border-left: 2px solid black;
             width: 80%;
-            margin: 5px auto;
+            margin: 0px auto;
             background-color: transparent;
         }
         .barra{
-            border: 1px solid black;           
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
         }
         .opciones{
             font:  bold 15px sans-serif;
             border: 1px solid black;
+            padding: 1px;
+            color: #0c2461;
+            border-radius: 5px;
         }
         footer{
             font-weight: bold;
             clear: both;
             padding: 15px;
-            border: 1px solid black;
+            border-top: 2px solid black;
             text-align: center;
         }
         .registro, .login{
-            font:  bold 15px sans-serif;
+            font: bold 15px sans-serif;
         }
         .boton{
             font:  bold 15px sans-serif;
             border-radius: 5px;
-            border-style:solid;
+            border-style: solid;
             background-color: #78e08f;
         }
         #botonlogin{
@@ -75,9 +91,6 @@
             margin: 0;
             padding: 0 10px 0 0;
         }
-        .user-info li a {
-            color: #227093;
-        }
         a:hover {
             text-decoration: none;
         }
@@ -85,13 +98,18 @@
             width: 30%;
             float: right;
             margin: 10px;
-            border: 1px solid black;
+            border: 2px solid #2f3640;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .contenido{
+            padding: 5px;
         }
         .texto{
-            border: 1px solid black;
             padding: 20px;
             margin-bottom: 15px;
-            width: 60%;
+            width: 62%;
+            font-size: 18px;
         }
 
 
@@ -101,9 +119,10 @@
 </head>
 <body>
 <div class="bloque">
+    <div class="fijo">
     <header>
         <h1>Rico-Login</h1>
-        <h4>La magica historia del login mas bello jamas creado</h4>
+        <h4>"Best login ever seen" -My mom <3</h4>
     </header>
     <div class="barra">
     <ul class="user-info">
@@ -114,17 +133,22 @@
             <li> | </li>
             <li><a class="opciones" href="{{ url_for('show_signup_form') }}">Signup</a></li>
         {% else %}
-            <li>{{ current_user.name }}</li>
+            <li><strong>{{ current_user.name }}</strong></li>
             <li> | </li>
             <li><a class="opciones" href="{{ url_for('logout') }}">Logout</a></li>
-        {% endif %}
             <li> | </li>
-            <li><a class="opciones" href="http://www.google.com.ar">Google</a></li>
+            <li><a class="opciones" href="http://www.google.com.ar">Wallet</a></li>
+            <li> | </li>
+            <li><a class="opciones" href="http://www.google.com.ar">Transfers</a></li>
+        {% endif %}
             <li> | </li>
             <li><a class="opciones" href="http://www.google.com.ar">Contact</a></li>
     </ul>
-    </div>    
+    </div>
+    </div>
+    <div class="contenido">
     {% block content %}{% endblock %}
+    </div>    
     <footer>
         Todos los derechos reservados.
         Copyright 1999-2019</footer>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, abort
+from flask import Flask, render_template, request, redirect, url_for, abort, flash
 from flask_login import LoginManager, logout_user, current_user, login_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.urls import url_parse
@@ -52,50 +52,46 @@ def post_form(post_id):
 
 @app.route("/signup/", methods=["GET", "POST"])
 def show_signup_form():
-    if current_user.is_authenticated:
-        return redirect(url_for('account'))
-    form = SignupForm()
-    error = None
-    if form.validate_on_submit():
-        name = form.name.data
-        email = form.email.data
-        password = form.password.data
-        # Comprobamos que no hay ya un usuario con ese email
-        user = User.get_by_email(email)
-        if user is not None:
-            error = f'The entered email is being used by another user'
-        else:
-            # Creamos el usuario y lo guardamos
-            user = User(name=name, email=email)
-            user.set_password(password)
-            user.save()
-            # Dejamos al usuario logueado
-            login_user(user, remember=True)
-            next_page = request.args.get('next', None)
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('account')
-            return redirect(next_page)
-    return render_template("signup_form.html", form=form, error=error)
-
+    form = SignupForm(request.form)
+    if request.method == 'POST': 
+        if form.validate():
+            name = request.form.get('name')
+            email = request.form.get('email')
+            password = request.form.get('password')
+            user = User.query.filter_by(email=email).first()
+            if user is None:
+                # Creamos el usuario y lo guardamos
+                user = User(name=name, email=email)
+                user.set_password(password)
+                user.save()
+                # Dejamos al usuario logueado
+                login_user(user, remember=True)
+                return redirect(url_for('account'))
+            flash('A user already exists with that email address.')
+            return redirect(url_for('show_signup_form'))
+    return render_template("signup_form.html", form=form)
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_by_id(int(user_id))
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.get_by_email(form.email.data)
-        if user is not None and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
-            next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('account')
-            return redirect(next_page)
+        return redirect(url_for('account'))
+    form = LoginForm(request.form)
+    if request.method == 'POST':
+        if form.validate():
+            email = request.form.get('email')
+            password = request.form.get('password')  
+            user = User.query.filter_by(email=email).first()
+            if user:
+                if user.check_password(password=password):
+                    login_user(user)
+                    next = request.args.get('next')
+                    return redirect(next or url_for('account'))
+        flash('Invalid username/password combination')
+        return redirect(url_for('login'))
     return render_template('login_form.html', form=form)
 
 
