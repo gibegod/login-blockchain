@@ -21,6 +21,10 @@ def index():
     posts = Post.get_all()
     return render_template("index.html", posts=posts)
 
+@app.route("/account")
+def account():
+    return render_template("myaccount.html")
+
 
 @app.route("/p/<string:slug>/")
 def show_post(slug):
@@ -49,7 +53,7 @@ def post_form(post_id):
 @app.route("/signup/", methods=["GET", "POST"])
 def show_signup_form():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('account'))
     form = SignupForm()
     error = None
     if form.validate_on_submit():
@@ -59,7 +63,7 @@ def show_signup_form():
         # Comprobamos que no hay ya un usuario con ese email
         user = User.get_by_email(email)
         if user is not None:
-            error = f'El email {email} ya está siendo utilizado por otro usuario'
+            error = f'The entered email is being used by another user'
         else:
             # Creamos el usuario y lo guardamos
             user = User(name=name, email=email)
@@ -69,7 +73,7 @@ def show_signup_form():
             login_user(user, remember=True)
             next_page = request.args.get('next', None)
             if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('index')
+                next_page = url_for('account')
             return redirect(next_page)
     return render_template("signup_form.html", form=form, error=error)
 
@@ -90,7 +94,7 @@ def login():
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('index')
+                next_page = url_for('account')
             return redirect(next_page)
     return render_template('login_form.html', form=form)
 
@@ -98,4 +102,4 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))

@@ -3,6 +3,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+<aside class="columna">
     <div class="login">
         <h3>Log in</h3>
         <form action="" method="post" novalidate>
@@ -11,14 +12,14 @@
                 {{ form.email.label }}
                 {{ form.email(placeholder="Email") }}<br>
                 {% for error in form.email.errors %}
-                <span style="color: red;">{{ error }}</span>
+                <span class="text-danger">{{ error }}</span>
                 {% endfor %}
             </div>
             <div>
                 {{ form.password.label }}
                 {{ form.password(placeholder="Password") }}<br>
                 {% for error in form.password.errors %}
-                <span style="color: red;">{{ error }}</span>
+                <span class="text-danger">{{ error }}</span>
                 {% endfor %}
             </div>
             <div>{{ form.remember_me() }} {{ form.remember_me.label }}</div>
@@ -28,4 +29,12 @@
         </form>
     </div>
     <div>New here? <a href="{{ url_for('show_signup_form') }}">Sign up now</a></div>
+</aside>
+<article class="texto">
+        <p>Pagina de presentacion:(login y signup)</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi consequuntur, molestiae sapiente quos cumque alias commodi repudiandae inventore harum minus libero! Delectus eaque quam cumque nulla esse saepe. Ducimus, laboriosam.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque praesentium nobis non dolorem, illum natus dolore at veritatis iure quidem recusandae quas mollitia quis cum fuga, saepe similique, eligendi reiciendis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus labore officiis, deleniti non expedita neque molestiae, itaque odio consequuntur eaque a sunt? Praesentium exercitationem eveniet magni illum, excepturi est nihil!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut eligendi, illo voluptatibus officiis commodi nostrum, tempore quaerat nam facere harum sequi reprehenderit quibusdam vero laudantium dolor atque voluptatum vel provident.</p>
+</article>
 {% endblock %}

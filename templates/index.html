@@ -3,9 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <ul>
-    {% for post in posts %}
-        <li><a href="{{ post.public_url() }}">{{ post.title }}</a></li>
-    {% endfor %}
-    </ul>
+
+
 {% endblock %}
