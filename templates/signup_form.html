@@ -6,11 +6,12 @@
     {% if error %}
         <p class="text-danger"><strong>Error:</strong> {{ error }}
     {% endif %}
+    <h3>Sign up</h3>
     <form class="registro" action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <div>
             {{ form.name.label() }}
-            {{ form.name(placeholder="Usuario") }}<br>
+            {{ form.name(placeholder="Username") }}<br>
             {% for error in form.name.errors %}
             <span class="text-danger">{{ error }}</span>
             {% endfor %}
@@ -30,7 +31,7 @@
             {% endfor %}
         </div>
         <div>
-            {{ form.submit(class="boton") }}
+            {{ form.submit(class="boton", id="botonsignup") }}
         </div>
     </form>
 {% endblock %}

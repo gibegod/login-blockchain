@@ -42,6 +42,19 @@
         }
         .boton{
             font:  bold 15px sans-serif;
+            border-radius: 5px;
+            border-style:solid;
+            background-color: #78e08f;
+        }
+        #botonlogin{
+            width: 25%;
+        }
+        #botonsignup{
+            width: 35%;
+        }
+        input {
+            border-radius: 3px;
+            padding: 1%;
         }
         .user-info {
             list-style: none;
@@ -57,6 +70,9 @@
         .user-info li a {
             color: #227093;
         }
+        a:hover {
+            text-decoration: none;
+        }
         .columna{
             width: 30%;
             float: right;
@@ -67,7 +83,7 @@
             border: 1px solid black;
             padding: 20px;
             margin-bottom: 15px;
-            width: 55%;
+            width: 60%;
         }
 
 
@@ -88,16 +104,16 @@
             <li> | </li>
             <li><a class="opciones" href="{{ url_for('login') }}">Login</a></li>
             <li> | </li>
-            <li><a class="opciones" href="{{ url_for('show_signup_form') }}">Registrarse</a></li>
+            <li><a class="opciones" href="{{ url_for('show_signup_form') }}">Signup</a></li>
         {% else %}
             <li>{{ current_user.name }}</li>
             <li> | </li>
             <li><a class="opciones" href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
             <li> | </li>
-            <li><a class="opciones" href="http://www.google.com.ar">Mi cuenta</a></li>
+            <li><a class="opciones" href="http://www.google.com.ar">My account</a></li>
             <li> | </li>
-            <li><a class="opciones" href="http://www.google.com.ar">Contacto</a></li>
+            <li><a class="opciones" href="http://www.google.com.ar">Contact</a></li>
     </ul>
     </div>
     <aside class="columna">

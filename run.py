@@ -1,11 +1,8 @@
-
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import LoginManager, logout_user, current_user, login_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.urls import url_parse
-
 from forms import SignupForm, PostForm, LoginForm
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
