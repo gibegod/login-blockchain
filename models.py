@@ -11,9 +11,9 @@ class User(db.Model, UserMixin):
     __tablename__ = 'blog_user'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(60), unique=True, nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(64), unique=True, nullable=False)
+    password = db.Column(db.String(256), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):

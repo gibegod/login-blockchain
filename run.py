@@ -6,7 +6,7 @@ from forms import SignupForm, PostForm, LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/miniblog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://gibegod:lopez999@gibegod.mysql.pythonanywhere-services.com/gibegod$miniblog'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 login_manager = LoginManager(app)
@@ -53,7 +53,7 @@ def post_form(post_id):
 @app.route("/signup/", methods=["GET", "POST"])
 def show_signup_form():
     form = SignupForm(request.form)
-    if request.method == 'POST': 
+    if request.method == 'POST':
         if form.validate():
             name = request.form.get('name')
             email = request.form.get('email')
@@ -83,7 +83,7 @@ def login():
     if request.method == 'POST':
         if form.validate():
             email = request.form.get('email')
-            password = request.form.get('password')  
+            password = request.form.get('password')
             user = User.query.filter_by(email=email).first()
             if user:
                 if user.check_password(password=password):
