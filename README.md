@@ -12,3 +12,6 @@ set "FLASK_APP=run.py"
 set "FLASK_ENV=development"
 6. Ejecutar 'flask run'.
 7. Dirigirse a localhost:5000/login y la magia ocurrira.
+
+Base de datos en local: 'mysql+pymysql://root:@localhost/miniblog'
+Base de datos en PythonAnywhere: 'mysql+pymysql://gibegod:lopez999@gibegod.mysql.pythonanywhere-services.com/gibegod$miniblog'
